@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title> <%= title %>  </title>
+</head>
+
+<body>
+    <%- include('./partials/header') %>
+    
+    <h1> <%= title %> </h1>
+    
+    <lu>
+        <% for (let i = 0; i < movies.length; i++) { %>
+            <li>
+                <a href="/movies/detail/<%= movies[i].id %>">
+                    <% if (movies[i].genre) { %>
+                        <%= movies[i].title  %> - <%= movies[i].genre.name %>
+                        <% } else { %>
+                            <%= movies[i].title  %>
+                            <% } %>
+                        </a>
+                        <% if (movies[i].actor){ %> 
+                            <lu>
+                                <% for (let j = 0; j < movies[i].actor.length; j++) { %> 
+                                    <li>
+                                        <%= movies[i].actor[j].first_name %> <%= movies[i].actor[j].last_name %>
+                                    </li>
+                                    <% } %> 
+                                </lu>
+                                <% } %>
+                                <form action="/movies/edit/<%= movies[i].id %> ">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-warning">Editar</button>
+                                    </div>
+                                </form>
+                                <form action="/movies/delete/<%= movies[i].id %>?_method=delete" method="POST">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-danger">Borrar</button>
+                                    </div>
+                                </form>
+                            </li>
+                            <% } %>
+                        </lu>
+                        
+                        <%- include('./partials/scripts') %>
+                    </body>
+                    
+                    </html>
