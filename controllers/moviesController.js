@@ -1,5 +1,5 @@
 let db = require('../database/models');
-let op = require('sequelize').Op
+let Op = require('sequelize').Op
 
 module.exports = {
     list(req, res) {
@@ -45,8 +45,9 @@ module.exports = {
             where: {
                 id: req.params.id
             }
-        })
-        res.redirect(`/movies/detail/${req.params.id}`);
+        }).then(()=>{
+            res.redirect(`/movies/detail/${req.params.id}`);
+        });
 
     },
     delete(req, res) {
@@ -54,8 +55,10 @@ module.exports = {
             where: {
                 id: req.params.id
             }
+        }).then(()=> {
+            res.redirect('/movies')
         })
-        res.redirect('movies')
+
     },
     new(req, res) {
         db.Movie.findAll({
@@ -72,7 +75,7 @@ module.exports = {
     recomend(req, res) {
         db.Movie.findAll({
             where: {
-                rating: { [db.Sequelize.Op.gt]: 8 }
+                rating: { [Op.gt]: 8 }
             },
             include: [{association: 'actor'}]
         }).then(movies => {
