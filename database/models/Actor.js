@@ -21,7 +21,7 @@ module.exports = (sequelize, dataTypes) => {
         tableName: "actors",
         underscored: true, //para que reconosca los guiones bajos
         timestamps: true, // no poner false, para que sequelize autocomplete los campos de timestamp, si no uso created_ad y updated_ad uso false
-    }
+    };
 
     const Actor = sequelize.define(alias, cols, config);
 
@@ -33,6 +33,6 @@ module.exports = (sequelize, dataTypes) => {
             otherKey: 'movie_id', //siempre el otherKey va a ser de la otra tabla que estamos configurando
             timestamps: false
         });
-    }
+    };
     return Actor;
 }

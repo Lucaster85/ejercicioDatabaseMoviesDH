@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title> <%= title %>  </title>
+</head>
+
+<body>
+    <%- include('./partials/header') %>
+    
+    <h1> <%= title %> </h1>
+    
+    <lu>
+        <% for (let i = 0; i < actors.length; i++) { %>
+            <li>
+                <a href="/actors/bio/<%= actors[i].id %>">
+                            <%= actors[i].first_name %> <%= actors[i].last_name %>
+                        </a>
+                        <% if (actors[i].movies){ %> 
+                            <lu>
+                                <% for (let j = 0; j < actors[i].movies.length; j++) { %> 
+                                    <li>
+                                        <%= actors[i].movies[j].title %>
+                                    </li>
+                                    <% } %> 
+                                </lu>
+                                <% } %>
+                                <form action="/actors/bio/<%= actors[i].id %> ">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-warning">Editar</button>
+                                    </div>
+                                </form>
+                                <form action="/actors/delete/<%= actors[i].id %>?_method=delete" method="POST">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-danger">Borrar</button>
+                                    </div>
+                                </form>
+                            </li>
+                            <% } %>
+                        </lu>
+                        
+                        <%- include('./partials/scripts') %>
+                    </body>
+                    
+                    </html>

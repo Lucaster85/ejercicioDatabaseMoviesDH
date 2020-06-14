@@ -95,7 +95,7 @@ module.exports = {
         db.Movie.findAll({
             where: {
                 title: {
-                    [op.substring]: req.query.q,
+                    [Op.substring]: req.query.q,
                 }
             },
             include: [{association: 'actor'}]

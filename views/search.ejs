@@ -14,19 +14,31 @@
 
     <h1> <%= title %> </h1>
 
-    <lu>
-        <% for (let i = 0; i < movies.length; i++) { %>
-        <li>
-            <a href="/movies/detail/<%= movies[i].id %>">
-                <% if (movies[i].genre) { %>
-                <%= movies[i].title  %> - <%= movies[i].genre.name %>
-                <% } else { %>
-                <%= movies[i].title  %>
+    <% if (movies) { %>
+        <lu>
+            <% for (let i = 0; i < movies.length; i++) { %>
+            <li>
+                <a href="/movies/detail/<%= movies[i].id %>">
+                    <% if (movies[i].genre) { %>
+                    <%= movies[i].title  %> - <%= movies[i].genre.name %>
+                    <% } else { %>
+                    <%= movies[i].title  %>
+                    <% } %>
+                </a>
+            </li>
+            <% } %>
+        </lu>
+        <% } else if (actors) { %> 
+            <lu>
+                <% for (let i = 0; i < actors.length; i++) { %>
+                <li>
+                    <a href="/movies/detail/<%= actors[i].id %>">
+                        <%= actors[i].first_name  %> - <%= actors[i].last_name %>
+                    </a>
+                </li>
                 <% } %>
-            </a>
-        </li>
-        <% } %>
-    </lu>
+            </lu>
+    <% } %> 
 
     <%- include('./partials/scripts') %>
 </body>
