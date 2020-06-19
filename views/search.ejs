@@ -28,6 +28,20 @@
             </li>
             <% } %>
         </lu>
+        <!--  -->
+        <lu>
+            <% for (let i = 0; i < course.length; i++) { %>
+            <li>
+                <a href="/products/detail/<%= course[i].id %>">
+                    
+                    <%= course[i].name  %> - <%= course[i].category.title %>
+                    
+                </a>
+            </li>
+            <% } %>
+        </lu>
+
+        <!--  -->
         <% } else if (actors) { %> 
             <lu>
                 <% for (let i = 0; i < actors.length; i++) { %>
