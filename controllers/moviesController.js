@@ -12,7 +12,10 @@ module.exports = {
 
     },
     create(req,res) {
-        res.render('createMovie', {title: `Crea tu pelicula`})
+        db.Genre.findAll()
+            .then(genres => {
+                res.render('createMovie', {genres, title: `Crea tu pelicula`})
+            })
     },
     load(req, res) {
        db.Movie.create({
@@ -20,9 +23,8 @@ module.exports = {
             awards: req.body.awards,
             rating: req.body.rating,
             length: req.body.length,
-            release_date: '2020-11-11'
-
-            /* genre_id: req.body.genre_id, */
+            release_date: '2020-11-11',
+            genre_id: req.body.genre_id
         })
         res.redirect('/movies');
     },

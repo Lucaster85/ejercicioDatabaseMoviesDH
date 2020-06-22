@@ -3,15 +3,18 @@
   <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
   </head>
-  <body>
+  <body> <%# heroku %>
 
     <%- include('./partials/header') %> 
 
     <h1 class="text-center"><%= title %></h1>
     <p class="text-center">Welcome to <%= title %></p>
+    <h2 class="fox"></h2>
 
-    <%- include('./partials/scripts') %> 
+    <%- include('./partials/scripts') %>
+    <script src="/javascripts/indexScripts.js"></script>
 
   </body>
 </html>

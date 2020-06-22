@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <title> <%= title %> </title>
 </head>
 
@@ -14,6 +15,12 @@
     <div class="container p-4 text-center">
         <h1> <%= title %> </h1>
     </div>
+    <div class="container p-4 text-center errores">
+        <h2> Tenes los siguientes errores </h2>
+        <ul class="list-group list-group-horizontal">
+
+        </ul>
+    </div>
     <div class="container p-4">
         <div class="row">
             <div class="col-md-4 mx-auto">
@@ -21,18 +28,28 @@
                     <div class="card-header">
                         <h3>Ingresa los datos</h3>
                     </div>
-                    <form action="/movies/create" method="POST">
+                    <form class='crear'action="/movies/create" method="POST">
                         <div class="form-group">
-                            <input type="text" name="title" placeholder="Titulo" class="form-control" autofocus>
+                            <input type="text" name="title" placeholder="Titulo" class="form-control titulo" autofocus>
                         </div>
                         <div class="form-group">
-                            <input type="text" name="rating" placeholder="Rating" class="form-control">
+                            <input type="text" name="rating" placeholder="Rating" class="form-control rating">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="length" placeholder="Duración" class="form-control">
+                            <input type="text" name="length" placeholder="Duración" class="form-control duracion">
                         </div>
                         <div class="form-group">
-                            <input type="text" name="awards" placeholder="Premios" class="form-control">
+                            <input type="text" name="awards" placeholder="Premios" class="form-control premios">
+                        </div>
+                        <div class="form-group">
+                            <select name="genres" class="form-control genero">
+                                <option value="0">Selecciona un genero</option>
+                                <% for (let i = 0; i < genres.length; i++) { %> 
+                                <option value="<%= genres[i].id %> ">
+                                    <%= genres[i].name %> 
+                                 </option>
+                                <% } %> 
+                            </select>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Crear</button>
@@ -44,6 +61,7 @@
     </div>
 
     <%- include('./partials/scripts') %>
+    <script src="/javascripts/formScripts.js"></script>
 </body>
 
 </html>
