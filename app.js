@@ -8,6 +8,7 @@ var methodOverride = require('method-override');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var moviesRouter = require('./routes/movies');
+var apiMoviesRouter = require('./routes/api/movies');
 var actorsRouter = require('./routes/actors');
 
 var app = express();
@@ -26,6 +27,7 @@ app.use(methodOverride('_method'))
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movies', moviesRouter);
+app.use('/api/movies', apiMoviesRouter);
 app.use('/actors', actorsRouter);
 
 // catch 404 and forward to error handler
